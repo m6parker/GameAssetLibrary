@@ -2,6 +2,7 @@
 function displayImages() {
     const imagesContainer = document.getElementById('sprites');
 
+    // Sprite section
     spriteFiles.forEach(imageFile => {
 
         //create the image elements
@@ -24,7 +25,34 @@ function displayImages() {
 
         // select files
         imgElement.addEventListener('click', () => {
-            zoomIn(imgElement, imageFile);
+            zoomIn(imgElement, imageFile, 'sprites');
+        });
+    });
+
+    // Tileset Section
+    tilesetFiles.forEach(imageFile => {
+
+        //create the image elements
+        const imageContainer = document.createElement('div');
+        const imgElement = document.createElement('img');
+        const downloadLink = document.createElement('a');
+
+        //add attributes
+        downloadLink.href = `img/tilesets/${imageFile}`;
+        downloadLink.setAttribute('download', imageFile);
+        imgElement.src = `img/tilesets/${imageFile}`;
+        imgElement.alt = imageFile;
+        imgElement.className = 'file-item';
+
+        //attach them to the page
+        imageContainer.appendChild(imgElement);
+        imageContainer.appendChild(downloadLink);
+        imagesContainer.appendChild(imageContainer);
+        downloadLink.innerHTML += 'download';
+
+        // select files
+        imgElement.addEventListener('click', () => {
+            zoomIn(imgElement, imageFile, 'tilesets');
         });
     });
 }
@@ -49,11 +77,10 @@ function openTab(event, tabName) {
 }
 
 // shows a larger version of the image
-function zoomIn(fileElement, fileName){
-    console.log(fileElement)
+function zoomIn(fileElement, fileName, category){
     fileElement.classList.toggle('selected');
     document.querySelector('.backdrop').classList.remove('hidden');
-    document.querySelector('.zoomed-img').setAttribute('src', `img/sprites/${fileName}`);
+    document.querySelector('.zoomed-img').setAttribute('src', `img/${category}/${fileName}`);
 
 }
 
