@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Asset Library</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.cdnfonts.com/css/devin-chavez-font" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="left-menu">
+
+            <div>
+                <h1>Pixel Art</h1><h4>by Mary</h4>
+            </div>
+
+            <div class="tabs">
+                <div class="tab-button selected" onclick="openTab(event, 'sprites')">Sprites</div>
+                <div class="tab-button" onclick="openTab(event, 'spritesheets')">Spritesheets</div>
+                <div class="tab-button" onclick="openTab(event, 'tilesets')">Tilesets</div>
+                <div class="tab-button" onclick="openTab(event, 'ui')">UI</div>
+                <div class="tab-button" onclick="openTab(event, 'assetPacks')">Asset Packs</div>
+            </div>
+
+                        
+            <div class="filter-section">
+                <div class="upload-text">search:</div>
+                <input type="text" placeholder="png-name">
+            </div>
+
+                        
+            <div class="upload-section">
+                <div class="upload-text">Upload a PNG File</div>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <input type="file" id="fileInput" name="file" accept="image/png" required>
+                    <select id="categorySelect" name="category" class="category-select">
+                        <option value="sprites">Sprite</option>
+                        <option value="spritesheets">Spritesheet</option>
+                        <option value="tilesets">Tileset</option>
+                        <option value="ui">UI</option>
+                        <option value="assetPacks">Asset Pack</option>
+                    </select>
+                    <button type="submit">Upload</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="download-section">
+            <div id="sprites" class="tab-content"></div>
+            <div id="spritesheets" class="tab-content" style="display: none;"></div>
+            <div id="tilesets" class="tab-content" style="display: none;"></div>
+            <div id="ui" class="tab-content" style="display: none;"></div>
+            <div id="assetPacks" class="tab-content" style="display: none;"></div>
+        </div>
+
+        <div class="backdrop hidden">
+            <div class="zoom-container">
+                <div class="preview-text">close preview</div>
+                <img class="zoomed-img">
+            </div>
+        </div>
+
+    </div>
+
+    <script src="scripts/sprites.js"></script>
+    <script src="scripts/tilesets.js"></script>
+    <script src="scripts/script.js"></script>
+</body>
+</html>

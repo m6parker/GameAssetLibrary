@@ -1,0 +1,254 @@
+/*
+:root {
+  --primary-color: darkseagreen;
+  --secondary-color: #779377;
+  --color-3: #fff;
+  --color-4: #c6ebc6;
+}
+
+:root{
+  --primary-color: #ffa1d0;
+  --secondary-color: #ff7cb3;
+  --color-3: #fff;
+  --color-4: #eb5d98;
+} 
+
+:root{
+  --primary-color: #e0e0e0;
+  --secondary-color: #b6b6b6;
+  --color-3: #fff;
+  --color-4: #636363;
+} 
+*/
+
+
+.tab-content {
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    padding: 10px;
+}
+
+.file-item {
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-direction: column;
+    height: 300px;
+    background-color: #ffff;
+    border: 2px solid#ffff;
+}
+
+.file-options{
+    margin: 10px;
+    border-top: 1px solid black;
+    padding: 10px;
+    justify-content: space-between;
+    display: flex;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.file-preview, .file-item {
+    height: 50%;
+    width: 100%;
+    object-fit:contain;
+    border-radius: 4px;
+    image-rendering: pixelated;
+}
+
+.file-item a {
+    color: #007BFF;
+    text-decoration: none;
+    border: 1px solid #6e6e6e;
+    padding: 0 5px 0 5px;
+    border-radius: 5px;
+}
+
+.file-item a:hover {
+    text-decoration: underline;
+    background-color: #adadad;
+}
+/* 
+.file-item.selected{
+    border: 2px solid black;
+    background: #e7e7e7;
+} */
+
+.file-item:hover{
+    border: 2px solid black;
+    background: #e7e7e7;
+}
+
+.file-item span{
+    justify-content: space-evenly;
+}
+
+
+
+:root{
+  --color-1: #e9d7c0;
+  --color-2: #daa38f;
+  --color-3: #9b7d61;
+  --color-4: #92ada4;
+  --color-5: #fed8a6;
+} 
+
+html, body {
+    height: 99%;
+    background-color: var(--color-4);
+    font-family: 'Devin Chavez Font', sans-serif;
+}
+
+.container{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    padding: 5px;;
+
+}
+
+.left-menu{
+    flex-direction: column;
+    height: 100%;
+    display: flex;
+    width: 250px;
+    user-select: none;
+    justify-content: space-between;
+}
+
+.upload-section, .filter-section{
+    background-color: var(--color-2);
+    height: 25%;
+    border-radius: 10px;
+    position: relative;
+    margin-right: 15px;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: none;
+}
+
+.upload-section .upload-text{
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    background-color: #ac7f6f;
+}
+
+form select, form input, form button{
+    padding: 10px;
+    width: 100%;
+}
+
+form button{
+    background-color: #ac7f6f;
+    border-radius: 0 0 10px 10px;
+    border: 1px solid #ac7f6f;
+    cursor: pointer;
+    font-family: 'Devin Chavez Font', sans-serif;
+    bottom: 0;
+    position: absolute;
+    left: 0;
+}
+
+.filter-section{
+    padding: 5px;
+    height: 70px;
+}
+
+.filter-section input{
+    padding: 10px;
+}
+
+.download-section{
+    background-color: var(--color-1);
+    border-radius: 15px;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.tabs{
+    height: 30%;
+
+}
+
+.tab-content{
+    padding: 15px;
+}
+
+.tabs div{
+    margin: 5px 0 5px 5px;
+    background-color: var(--color-5);
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    cursor: pointer;
+}
+
+.tabs .selected{
+    background-color: var(--color-1);
+}
+
+.tabs div:hover{
+    color:#6e6e6e;
+}
+
+form button:hover{
+    border: 1px solid black;
+}
+
+.zoom-container{
+    background-color: #ffff;
+    width: 70%;
+    position: absolute;
+    height: 70%;
+    top: 10%;
+    left: 15%;
+    border: 5px solid black;
+    align-items: center;
+    display: flex;
+    z-index: 10;
+    flex-direction: column;
+    opacity: 100%;
+}
+
+.zoom-container .zoomed-img{
+    height: 90%;
+    width: 90%;
+    image-rendering: pixelated;
+    object-fit: contain;
+    position: absolute;
+    bottom: 5px;
+
+}
+
+.zoom-container .preview-text{
+    background-color: black;
+    color: white;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    z-index: 11;
+}
+
+.zoom-container .preview-text:hover{
+    color: #6e6e6e;
+}
+
+.hidden{
+    display: none;
+}
+
+.backdrop{
+    width: 100%;
+    height:100%;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    backdrop-filter: blur(10px);
+}
