@@ -17,10 +17,10 @@ function displayImages() {
         imgElement.className = 'file-item';
 
         //attach them to the page
+        imageContainer.appendChild(imgElement);
         imageContainer.appendChild(downloadLink);
-        downloadLink.appendChild(imgElement);
         imagesContainer.appendChild(imageContainer);
-        // downloadLink.innerHTML += 'download';
+        downloadLink.innerHTML += 'download';
 
         // select files
         imgElement.addEventListener('click', () => {
