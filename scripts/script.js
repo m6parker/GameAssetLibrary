@@ -42,6 +42,8 @@ function createElements(category, imageFile){
     imgElement.alt = imageFile;
     imgElement.className = 'file-item';
     imageName.textContent = imageFile;
+    imageName.className = 'image-name';
+    imageContainer.className = 'image-container';
 
     //attach them to the page
     imageContainer.appendChild(imageName);
@@ -64,14 +66,14 @@ function createElements(category, imageFile){
 // switch between tabs for each category type
 function openTab(event, tabName) {
     // hide all elements with tab-content
-    var tabContents = document.getElementsByClassName("tab-content");
-    for (var i = 0; i < tabContents.length; i++) {
+    let tabContents = document.getElementsByClassName("tab-content");
+    for (let i = 0; i < tabContents.length; i++) {
         tabContents[i].style.display = "none";
     }
 
     // remove all selected buttons
-    var tabButtons = document.getElementsByClassName("tab-button");
-    for (var i = 0; i < tabButtons.length; i++) {
+    let tabButtons = document.getElementsByClassName("tab-button");
+    for (let i = 0; i < tabButtons.length; i++) {
         tabButtons[i].className = tabButtons[i].className.replace(" selected", "");
     }
 
@@ -99,6 +101,24 @@ const zoomContainer = document.querySelector('.zoom-container');
 toggleSwitch.addEventListener('change', ()=> {
     toggleText.textContent = toggleSwitch.checked ? 'light' : 'dark';
     zoomContainer.classList.toggle('dark-mode');
+});
+
+const filterInput = document.querySelector('.filter-input');
+const tabContents = document.querySelectorAll('.tab-content');
+filterInput.addEventListener('input', ()=> {
+    let filter, imageName, txtValue;
+    filter = filterInput.value.toUpperCase();
+    images = document.getElementsByClassName("image-container");
+
+    for (let i = 0; i < images.length; i++){
+        imageName = images[i].getElementsByClassName("image-name")[0];
+        txtValue = imageName.textContent || imageName.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            images[i].style.display = "block";
+        } else {
+            images[i].style.display = "none";
+        }
+    }
 });
 
 
