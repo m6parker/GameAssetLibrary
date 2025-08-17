@@ -1,6 +1,8 @@
 
 function displayImages() {
-    const imagesContainer = document.getElementById('sprites');
+    const spriteImgContainer = document.getElementById('sprites');
+    const tilesetImgContainer = document.getElementById('tilesets');
+    const spritesheetsImgContainer = document.getElementById('spritesheets');
 
     // Sprite section
     spriteFiles.forEach(imageFile => {
@@ -9,18 +11,22 @@ function displayImages() {
         const imageContainer = document.createElement('div');
         const imgElement = document.createElement('img');
         const downloadLink = document.createElement('a');
+        const imageName = document.createElement('div');
 
         //add attributes
         downloadLink.href = `img/sprites/${imageFile}`;
         downloadLink.setAttribute('download', imageFile);
+        downloadLink.classList.add('download-lonk');
         imgElement.src = `img/sprites/${imageFile}`;
         imgElement.alt = imageFile;
         imgElement.className = 'file-item';
+        imageName.textContent = imageFile;
 
         //attach them to the page
+        imageContainer.appendChild(imageName);
         imageContainer.appendChild(imgElement);
         imageContainer.appendChild(downloadLink);
-        imagesContainer.appendChild(imageContainer);
+        spriteImgContainer.appendChild(imageContainer);
         downloadLink.innerHTML += 'download';
 
         // select files
@@ -36,23 +42,57 @@ function displayImages() {
         const imageContainer = document.createElement('div');
         const imgElement = document.createElement('img');
         const downloadLink = document.createElement('a');
+        const imageName = document.createElement('div');
 
         //add attributes
         downloadLink.href = `img/tilesets/${imageFile}`;
         downloadLink.setAttribute('download', imageFile);
+        downloadLink.classList.add('download-lonk');
         imgElement.src = `img/tilesets/${imageFile}`;
         imgElement.alt = imageFile;
         imgElement.className = 'file-item';
+        imageName.textContent = imageFile;
 
         //attach them to the page
+        imageContainer.appendChild(imageName);
         imageContainer.appendChild(imgElement);
         imageContainer.appendChild(downloadLink);
-        imagesContainer.appendChild(imageContainer);
+        tilesetImgContainer.appendChild(imageContainer);
         downloadLink.innerHTML += 'download';
 
         // select files
         imgElement.addEventListener('click', () => {
             zoomIn(imgElement, imageFile, 'tilesets');
+        });
+    });
+
+    // spritesheet Section
+    spritesheetsFiles.forEach(imageFile => {
+        //create the image elements
+        const imageContainer = document.createElement('div');
+        const imgElement = document.createElement('img');
+        const imageName = document.createElement('div');
+        const downloadLink = document.createElement('a');
+
+        //add attributes
+        downloadLink.href = `img/spritesheets/${imageFile}`;
+        downloadLink.setAttribute('download', imageFile);
+        downloadLink.classList.add('download-lonk');
+        imgElement.src = `img/spritesheets/${imageFile}`;
+        imgElement.alt = imageFile;
+        imgElement.className = 'file-item';
+        imageName.textContent = imageFile;
+
+        //attach them to the page
+        imageContainer.appendChild(imageName);
+        imageContainer.appendChild(imgElement);
+        imageContainer.appendChild(downloadLink);
+        spritesheetsImgContainer.appendChild(imageContainer);
+        downloadLink.innerHTML += 'download';
+
+        // select files
+        imgElement.addEventListener('click', () => {
+            zoomIn(imgElement, imageFile, 'spritesheets');
         });
     });
 }
