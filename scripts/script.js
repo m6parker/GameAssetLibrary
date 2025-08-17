@@ -1,99 +1,63 @@
+const spriteImgContainer = document.getElementById('sprites');
+const tilesetImgContainer = document.getElementById('tilesets');
+const spritesheetsImgContainer = document.getElementById('spritesheets');
+const uiImageContainer = document.getElementById('ui');
 
 function displayImages() {
-    const spriteImgContainer = document.getElementById('sprites');
-    const tilesetImgContainer = document.getElementById('tilesets');
-    const spritesheetsImgContainer = document.getElementById('spritesheets');
 
     // Sprite section
     spriteFiles.forEach(imageFile => {
-
-        //create the image elements
-        const imageContainer = document.createElement('div');
-        const imgElement = document.createElement('img');
-        const downloadLink = document.createElement('a');
-        const imageName = document.createElement('div');
-
-        //add attributes
-        downloadLink.href = `img/sprites/${imageFile}`;
-        downloadLink.setAttribute('download', imageFile);
-        downloadLink.classList.add('download-lonk');
-        imgElement.src = `img/sprites/${imageFile}`;
-        imgElement.alt = imageFile;
-        imgElement.className = 'file-item';
-        imageName.textContent = imageFile;
-
-        //attach them to the page
-        imageContainer.appendChild(imageName);
-        imageContainer.appendChild(imgElement);
-        imageContainer.appendChild(downloadLink);
-        spriteImgContainer.appendChild(imageContainer);
-        downloadLink.innerHTML += 'download';
-
-        // select files
-        imgElement.addEventListener('click', () => {
-            zoomIn(imgElement, imageFile, 'sprites');
-        });
+        createElements('sprites', imageFile);
     });
 
     // Tileset Section
     tilesetFiles.forEach(imageFile => {
-
-        //create the image elements
-        const imageContainer = document.createElement('div');
-        const imgElement = document.createElement('img');
-        const downloadLink = document.createElement('a');
-        const imageName = document.createElement('div');
-
-        //add attributes
-        downloadLink.href = `img/tilesets/${imageFile}`;
-        downloadLink.setAttribute('download', imageFile);
-        downloadLink.classList.add('download-lonk');
-        imgElement.src = `img/tilesets/${imageFile}`;
-        imgElement.alt = imageFile;
-        imgElement.className = 'file-item';
-        imageName.textContent = imageFile;
-
-        //attach them to the page
-        imageContainer.appendChild(imageName);
-        imageContainer.appendChild(imgElement);
-        imageContainer.appendChild(downloadLink);
-        tilesetImgContainer.appendChild(imageContainer);
-        downloadLink.innerHTML += 'download';
-
-        // select files
-        imgElement.addEventListener('click', () => {
-            zoomIn(imgElement, imageFile, 'tilesets');
-        });
+        createElements('tilesets', imageFile);
     });
 
     // spritesheet Section
     spritesheetsFiles.forEach(imageFile => {
-        //create the image elements
-        const imageContainer = document.createElement('div');
-        const imgElement = document.createElement('img');
-        const imageName = document.createElement('div');
-        const downloadLink = document.createElement('a');
+        createElements('spritesheets', imageFile);
+    });
 
-        //add attributes
-        downloadLink.href = `img/spritesheets/${imageFile}`;
-        downloadLink.setAttribute('download', imageFile);
-        downloadLink.classList.add('download-lonk');
-        imgElement.src = `img/spritesheets/${imageFile}`;
-        imgElement.alt = imageFile;
-        imgElement.className = 'file-item';
-        imageName.textContent = imageFile;
+    // ui section
+    uiFiles.forEach(imageFile => {
+        createElements('ui', imageFile);
+    });
+}
 
-        //attach them to the page
-        imageContainer.appendChild(imageName);
-        imageContainer.appendChild(imgElement);
-        imageContainer.appendChild(downloadLink);
-        spritesheetsImgContainer.appendChild(imageContainer);
-        downloadLink.innerHTML += 'download';
+function createElements(category, imageFile){
+    //create the image elements
+    const imageContainer = document.createElement('div');
+    const imgElement = document.createElement('img');
+    const imageName = document.createElement('div');
+    const downloadLink = document.createElement('a');
 
-        // select files
-        imgElement.addEventListener('click', () => {
-            zoomIn(imgElement, imageFile, 'spritesheets');
-        });
+    //add attributes
+    downloadLink.href = `img/${category}/${imageFile}`;
+    downloadLink.setAttribute('download', imageFile);
+    downloadLink.classList.add('download-lonk');
+    downloadLink.innerHTML += 'download';
+    imgElement.src = `img/${category}/${imageFile}`;
+    imgElement.alt = imageFile;
+    imgElement.className = 'file-item';
+    imageName.textContent = imageFile;
+
+    //attach them to the page
+    imageContainer.appendChild(imageName);
+    imageContainer.appendChild(imgElement);
+    imageContainer.appendChild(downloadLink);
+    switch(category){
+        case 'sprites': spriteImgContainer.appendChild(imageContainer); break;
+        case 'spritesheets': spritesheetsImgContainer.appendChild(imageContainer); break;
+        case 'tilesets': tilesetImgContainer.appendChild(imageContainer); break;
+        case 'ui': uiImageContainer.appendChild(imageContainer); break;
+        default: spriteImgContainer.appendChild(imageContainer); break;
+    }
+
+    // select files
+    imgElement.addEventListener('click', () => {
+        zoomIn(imgElement, imageFile, category);
     });
 }
 
@@ -127,6 +91,14 @@ function zoomIn(fileElement, fileName, category){
 // removes larger image
 document.querySelector('.preview-text').addEventListener('click', ()=> {
     document.querySelector('.backdrop').classList.add('hidden');
+});
+
+const toggleSwitch = document.querySelector('.toggle-switch');
+let toggleText = document.querySelector('.toggle-text');
+const zoomContainer = document.querySelector('.zoom-container');
+toggleSwitch.addEventListener('change', ()=> {
+    toggleText.textContent = toggleSwitch.checked ? 'light' : 'dark';
+    zoomContainer.classList.toggle('dark-mode');
 });
 
 

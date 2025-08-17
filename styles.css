@@ -193,7 +193,7 @@ form button:hover{
 .zoom-container{
     background-color: #ffff;
     width: 70%;
-    position: absolute;
+    position: relative;
     height: 70%;
     top: 10%;
     left: 15%;
@@ -212,10 +212,9 @@ form button:hover{
     object-fit: contain;
     position: absolute;
     bottom: 5px;
-
 }
 
-.zoom-container .preview-text{
+.zoom-container .preview-text, .toggle-container{
     background-color: black;
     color: white;
     padding: 5px;
@@ -227,6 +226,23 @@ form button:hover{
 
 .zoom-container .preview-text:hover{
     color: #6e6e6e;
+}
+
+.dark-mode{
+    background-color: black;
+}
+
+.toggle-container{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.toggle-container .toggle-text{
+    width: 20px;
 }
 
 .hidden{
@@ -241,4 +257,55 @@ form button:hover{
     left: 0;
     top: 0;
     backdrop-filter: blur(10px);
+}
+
+/* toggle switch */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(72, 51, 141);
+  -webkit-transition: .2s;
+  transition: .2s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .1s;
+  transition: .1s;
+  border-radius: 50%;
+}
+
+.toggle-switch:checked + .slider {
+  background-color: #f3d721;
+}
+
+.toggle-switch:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
