@@ -5,4 +5,5 @@ const tilesetFiles = [
     'boat.png',
     'cave.png',
     'dock.png',
+    'honeycombHarvest.png',
 ];
